@@ -1,4 +1,4 @@
-import { httpCrud } from "@/config/axiosConfig";
+import { http } from "@/config/axiosConfig";
 import { ref } from "vue";
 import { useRouter } from 'vue-router'
 
@@ -12,21 +12,21 @@ export default function useSocieties() {
 
     // Mengambil data semua user pada database  
     const getSocieties = async () => {
-        const response = await httpCrud.get(url.value)
+        const response = await http.get(url.value)
 
         console.log(response.data)
         societies.value = response.data.data
     }
 
     const getSociety = async (id) => {
-        let response = await httpCrud.get(`${url.value}/${id}`)
+        let response = await http.get(`${url.value}/${id}`)
         society.value = response.data.data
     }
 
     const storeSocieties = async (data) => {
         errors.value = {};
         try {
-            await httpCrud.post(url.value, data);
+            await http.post(url.value, data);
             await router.push({ name: 'user' });
         } catch (e) {
             console.error('Error saving society:', e);
@@ -40,7 +40,7 @@ export default function useSocieties() {
     const editSocieties = async (id) => {
         errors.value = {};
         try {
-            await httpCrud.put(`${url.value}/${id}`, society.value);
+            await http.put(`${url.value}/${id}`, society.value);
             await router.push({ name: 'user' });
         } catch (e) {
             console.error('Error saving society:', e);
@@ -52,12 +52,12 @@ export default function useSocieties() {
     }
 
     const destroySocieties = async (id) => {
-        await httpCrud.delete(`${url.value}/${id}`)
+        await http.delete(`${url.value}/${id}`)
     }
 
     const login = async (credentials) => {
         try {
-            const response = await httpCrud.post(`${authUrl.value}`, credentials);
+            const response = await http.post(`${authUrl.value}`, credentials);
             console.log(response.data);
         } catch (error) {
             console.error('Login error:', error);

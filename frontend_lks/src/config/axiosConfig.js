@@ -3,7 +3,7 @@
 import axios from "axios";
 
 // Instance Axios untuk endpoint CRUD
-const httpCrud = axios.create({
+const http = axios.create({
   baseURL: 'http://localhost:8000/api/v1',
   headers: {
     'Accept': 'application/json',
@@ -11,13 +11,5 @@ const httpCrud = axios.create({
   },
 });
 
-// Instance Axios untuk endpoint login
-// const httpAuth = axios.create({
-//   baseURL: 'http://localhost/api/v1',
-//   headers: {
-//     'Accept': 'application/json',
-//     'Content-Type': 'application/json'
-//   },
-// });
 
-export { httpCrud };
+export { http };
