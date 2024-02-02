@@ -18,11 +18,21 @@
           </li>
         </ul>
         <ul class="navbar-nav ms-auto mx-5">
-          <li class="nav-item">
-            <router-link to="/login" class="nav-link active">Login</router-link>
-          </li>
-        </ul>
+        <li class="nav-item">
+          <a class="nav-link" v-if="isLogin">{{ name }}</a>
+          <router-link v-else to="/login" class="nav-link active">Login</router-link>
+        </li>
+        <li class="nav-item" v-if="isLogin">
+          <a @click="logout" class="nav-link active" style="cursor: pointer">Logout</a>
+        </li>
+      </ul>
       </div>
     </div>
   </nav>
 </template>
+
+<script setup>
+import useSocieties from '../composable/societies'
+
+const { isLogin, name, logout } = useSocieties()
+</script>

@@ -8,7 +8,9 @@ export default function useSocieties() {
     const societies = ref ([])
     const society = ref ([])
     const errors = ref({})
+    const isLogin = ref(false)
     const router = useRouter()
+    const name = ref('')
 
     // Mengambil data semua user pada database  
     const getSocieties = async () => {
@@ -59,21 +61,35 @@ export default function useSocieties() {
         try {
             const response = await http.post(`${authUrl.value}`, credentials);
             console.log(response.data);
+
+            isLogin.value = true
+            name.value = response.data.data.name
+            console.log(response.data.data.name)
         } catch (error) {
             console.error('Login error:', error);
             throw error; 
         }
     }
 
+    const logout = () => {
+        isLogin.value = false
+        name.value = ''
+        
+        router.push({ name: 'login' })
+    }
+
     return {
         societies, 
         society,
         errors,
+        isLogin,
+        name,
         getSocieties,
         getSociety,
         storeSocieties,
         editSocieties,
         destroySocieties,
         login,
+        logout,
     }
 }

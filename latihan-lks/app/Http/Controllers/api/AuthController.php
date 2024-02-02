@@ -65,10 +65,6 @@ class AuthController extends Controller
 
     public function login(Request $request)
 {
-
-    return response()->json([
-        'messages'=>'berhasil'
-    ]);
     $rules = [
         'name' => 'required',
         'password' => 'required',
@@ -98,6 +94,7 @@ class AuthController extends Controller
     return response()->json([
         'status' => true,
         'message' => 'Berhasil login',
+        'data' => $society,
         'token' => $token->plainTextToken,
     ]);
 }
