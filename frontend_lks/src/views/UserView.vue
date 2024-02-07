@@ -49,21 +49,15 @@ const errorMessage = ref('')
 
 const deleteSocieties = async (id) => {
   if (!window.confirm('Are you sure you want to delete this data?')) {
-    // Show alert for cancellation
     errorMessage.value = 'Deletion cancelled.'
     return
   }
-
   try {
     await destroySocieties(id)
     await getSocieties()
-
-    // Show alert for successful deletion
     successMessage.value = 'Data deleted successfully.'
   } catch (e) {
     console.error('Error deleting society:', e)
-
-    // Show alert for failure
     errorMessage.value = 'Failed to delete the record. Please try again.'
   }
 }

@@ -1,5 +1,6 @@
 <template>
 <div>Ini Halaman Show</div> <hr>
+<h2 class="mb-3 mt-3">Show Data</h2><hr>
   <div>
     <div class="mb-3">
         <label for="id_card_number" class="form-label">ID Card</label>
