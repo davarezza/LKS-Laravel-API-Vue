@@ -22,7 +22,7 @@ use App\Http\Controllers\api\RegionalController;
 // });
 
 Route::prefix('v1')->group(function() {
-    Route::resource('society', SocietyController::class)->middleware('auth:sanctum');
+    Route::resource('society', SocietyController::class);
     Route::get('regional/list', [RegionalController::class, 'index']);
     Route::prefix('auth')->group(function() {
         Route::post('login', [AuthController::class, 'login']);

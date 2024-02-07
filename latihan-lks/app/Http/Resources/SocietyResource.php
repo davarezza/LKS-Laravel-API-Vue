@@ -22,10 +22,7 @@ class SocietyResource extends JsonResource
             'born_date' => $this->born_date,
             'gender' => $this->gender,
             'address' => $this->address,
-            'regional_id' => [
-                'district' => $this->regional->district,
-                'province' => $this->regional->province,
-            ],
+            'regional_id' => $this->regional->district,
         ];
     }
 }

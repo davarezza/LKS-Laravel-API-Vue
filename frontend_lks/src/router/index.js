@@ -51,7 +51,6 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/UserView.vue'),
-      meta: { requiresAuth: true },
     },
     {
       path: '/user/add',
@@ -60,7 +59,6 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AddSocietyView.vue'),
-      meta: { requiresAuth: true },
     },
     {
       path: '/user/:id_society/edit/',
@@ -69,7 +67,6 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/EditSocietyView.vue'),
-      meta: { requiresAuth: true },
       props: true,
     },
     {
@@ -80,27 +77,8 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/ShowSocietyView.vue'),
       props: true,
-      meta: { requiresAuth: true },
     },
   ]
 })
-
-
-router.beforeEach((to, from, next) => {
-  // Cek apakah rute memerlukan autentikasi
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    // Cek apakah pengguna login
-    if (!isLogin.value) {
-      // Redirect ke halaman login jika belum login
-      next('/login');
-    } else {
-      // Lanjutkan ke rute yang diminta jika sudah login
-      next();
-    }
-  } else {
-    // Untuk rute yang tidak memerlukan autentikasi, lanjutkan seperti biasa
-    next();
-  }
-});
 
 export default router
