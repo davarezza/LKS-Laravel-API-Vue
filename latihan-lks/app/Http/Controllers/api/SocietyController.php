@@ -16,7 +16,7 @@ class SocietyController extends Controller
      */
     public function index()
     {
-        $data = Society::get();
+        $data = Society::with('regional')->get();
 
         return response()->json([
             'message' => 'Data ditemukan',
@@ -31,21 +31,13 @@ class SocietyController extends Controller
     public function store(AddSocietyRequest $request)
     {
         $dataSociety = new Society();
-
-        // $dataSociety->id_card_number = $request->id_card_number;
-        // $dataSociety->password = $request->password;
-        // $dataSociety->name = $request->name;
-        // $dataSociety->born_date = $request->born_date;
-        // $dataSociety->gender = $request->gender;
-        // $dataSociety->address = $request->address;
-        // $dataSociety->regional_id = $request->regional_id;
-        // $dataSociety->save();
         
         $dataSociety = Society::create($request->all());
 
         return response()->json([
             'status' => true,
-            'message' => 'Sukses menambahkan data'
+            'message' => 'Sukses menambahkan data',
+            'data' => $dataSociety,
         ],200);
 
     }

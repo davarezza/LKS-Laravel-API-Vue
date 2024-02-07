@@ -14,7 +14,7 @@ class RegionalController extends Controller
      */
     public function index()
     {
-        $data = Regional::with('regional')->get();
+        $data = Regional::get();
 
         return response()->json([
             'message' => 'Data ditemukan',

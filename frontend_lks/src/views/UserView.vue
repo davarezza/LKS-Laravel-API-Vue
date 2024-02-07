@@ -1,9 +1,10 @@
 <template>
+<div>
   <div>Ini Halaman CRUD</div>
   <div class="alert alert-success" v-if="successMessage">{{ successMessage }}</div>
   <div class="alert alert-danger" v-if="errorMessage">{{ errorMessage }}</div>
   <div><button class="btn btn-primary" @click="addSociety">Tambah Data</button></div>
-
+<div>
   <div>
     <table class="table">
       <thead>
@@ -31,6 +32,8 @@
       </tbody>
     </table>
   </div>
+  </div>
+</div>
 </template>
 
 <script setup>

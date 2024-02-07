@@ -1,4 +1,4 @@
-import http from '@/config/axiosConfig'
+import { http } from "@/config/axiosConfig"
 import { ref } from 'vue'
 
 export default function useRegionals() {
